@@ -11,9 +11,8 @@
 	  <h2 style="margin-bottom:5px">Result {{ creatorName }}'s {{ category }}</h2>
       
       <div class="hero-unit">
-      	<a class="btn btn-info" href="/vote?creator={{ creator }}&category={{ category }}" style="margin-bottom:10px;">Back to Vote</a>
       	<div >	
-			<table class="table table-bordered" align="center">
+			<table class="table table-bordered table-hover" align="center">
 			<tr align="center"><th>Item</th><th>Win</th><th>Lose</th><th>Winning Rate</th></tr>
 			{% for item in items %}
 			    {% if item.win != 0 or item.lose != 0 %}
@@ -37,6 +36,7 @@
 			{% endfor %}
 			</table>
 		</div>
+		<div align="right"><a class="btn btn-info" href="/vote?creator={{ creator }}&category={{ category }}" style="margin-bottom:10px;">Back to Vote</a></div>
       </div>
     </div> <!-- /container -->
 </body>

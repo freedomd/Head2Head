@@ -29,7 +29,8 @@ class CategoryPage(webapp2.RequestHandler):
             'login': login, 
             'url': url,
             'isEmpty': isEmpty,
-            'error': self.request.get('error') 
+            'error': self.request.get('error'),
+            'message': self.request.get('message')
         }
         
         path = os.path.join(os.path.dirname(__file__), 'templates/category.html')
@@ -105,3 +106,50 @@ class ManageCategory(webapp2.RequestHandler):
             self.response.out.write(template.render(path, template_values))
         else:       
             self.redirect("/category")
+
+
+class DeleteCategory(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        
+        if user == None:
+            self.redirect("/")
+            return 
+        
+        # get category information
+        category = self.request.get('category') 
+        if category != "":
+            cs = Category.all()
+            cs.filter('user =', user.email()) # get user category
+            cs.filter('category =', category) # get category
+            c = cs.get()
+            if c != None:
+                c.delete()
+        
+        self.redirect("/category")
+        # return 
+
+class ModifyCategory(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        
+        if user == None:
+            self.redirect("/")
+            return 
+        
+        # get category information
+        category = self.request.get('category') 
+        newname = self.request.get(category)
+        if newname != "" and newname != category:
+            cs = Category.all()
+            cs.filter('user =', user.email()) # get user category
+            cs.filter('category =', category) # get category
+            c = cs.get()
+            if c != None:
+                c.category = newname
+                c.put()
+                message = 'Modification of "%s" successfully saved.' % newname
+                self.redirect("/category?message=%s" % message)
+                return
+                    
+        self.redirect("/category")

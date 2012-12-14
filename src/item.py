@@ -93,7 +93,7 @@ class ResetItem(webapp2.RequestHandler):
                     i.lose = 0
                     i.rate = 0
                     i.put()
-                    message = "Modification Saved."
+                    message = 'Reset "%s" successfully.' % newname
                     self.redirect("/manageCategory?category=%s&message=%s" % (category, message))
                     return
                     
