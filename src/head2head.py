@@ -5,6 +5,7 @@ from google.appengine.ext.webapp import template
 from category import *
 from item import *
 from vote import *
+from result import *
 
 class HomePage(webapp2.RequestHandler):
     def get(self):
@@ -40,6 +41,5 @@ app = webapp2.WSGIApplication([('/', HomePage),
                                ('/addItem', AddItem),
                                ('/deleteItem', DeleteItem),
                                ('/vote',VotePage),
-                               #('/item',ItemPage),
-                               #('/result',ResultPage)
+                               ('/result',ResultPage),
                               ], debug=True)

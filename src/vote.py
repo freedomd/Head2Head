@@ -1,6 +1,5 @@
 import webapp2
 import os
-import urllib
 import random
 from google.appengine.api import users
 from google.appengine.ext.webapp import template

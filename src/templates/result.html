@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head> 
+<title>Result</title>
+</head>
+
+<body>
+	<div class="container">
+	  <h2 style="margin-bottom:5px">Result {{ creatorName }}'s {{ category }}</h2>
+      
+      <div class="hero-unit" align="center">
+      	<div>	
+			<table class="table table-bordered" align="center">
+			<tr align="center"><th>Item</th><th>Win</th><th>Lose</th><th>Winning Rate</th></tr>
+			{% for item in items %}
+			    {% if item.win != 0 or item.lose != 0 %}
+				<tr align="center">
+					<td>{{ item.item }}</td>
+					<td>{{ item.win }}</td>
+					<td>{{ item.lose }}</td>
+					<td>{{ item.rate }}</td>	
+				</tr>
+				{% endif %}
+			{% endfor %}
+			{% for item in items %}
+			  	{% if item.win == 0 and item.lose == 0 %}
+				<tr align="center">
+					<td>{{ item.item }}</td>
+					<td>{{ item.win }}</td>
+					<td>{{ item.lose }}</td>
+					<td>-</td>
+				</tr>
+				{% endif %}
+			{% endfor %}
+			</table>
+		</div>
+      </div>
+    </div> <!-- /container -->
+</body>
+</html>
+{% endblock %}
