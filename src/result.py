@@ -29,16 +29,32 @@ class ResultPage(webapp2.RequestHandler):
             return
         
         items = Item.all()
-        #items.ancestor(c.key()) # get all the items of c
-        items.filter("user =", user.email())
-        items.filter("category =", c.category)
-        items.order('-rate')
+        items.ancestor(c.key()) # get all the items of c
+        #items.filter("user =", user.email())
+        #items.filter("category =", c.category)
+        #items.order('-rate')
+        
+        orderList = {}
+        tmpList = {}
+        itemList = {}
+        for item in items.run():
+            tmpList[item.item] = {}
+            tmpList[item.item]['win'] = item.win
+            tmpList[item.item]['lose'] = item.lose
+            tmpList[item.item]['rate'] = item.rate
+            orderList[item.item] = item.rate
+        
+        for item in sorted(orderList, key=orderList.get, reverse=True):
+            itemList[item] = {}
+            itemList[item]['win'] = tmpList[item]['win']
+            itemList[item]['lose'] = tmpList[item]['lose']
+            itemList[item]['rate'] = tmpList[item]['rate']
         
         template_values = {
             'user': user,
             'login': login, 
             'url': url,
-            'items': items,
+            'items': itemList,
             'creator': creator,
             'creatorName': c.username,
             'category': category,

@@ -25,8 +25,7 @@ class AddItem(webapp2.RequestHandler):
                 items.filter('item =', item)
                 items.ancestor(c.key())
                 if items.get() == None:
-                    newItem = Item(item = item, win = 0, lose = 0, rate = 0, 
-                                   category = c.category, user = user.email(), parent = c.key()) # post a new item
+                    newItem = Item(item = item, win = 0, lose = 0, rate = 0, parent = c.key()) # post a new item
                     newItem.put() # save 
                 else:
                     errorMessage = "Item %s already exists!" % item
