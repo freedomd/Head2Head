@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head> 
+<title>Manage Category</title>
+</head>
+
+<body>
+	<div class="container">
+	  <h2 style="margin-bottom:5px">{{ category }}</h2>
+      
+      <div class="hero-unit">
+      	<div>
+      			{% if isEmpty == None %}
+      			<p>Oops, no items right now!</p>
+      			{% else %}
+      			<table class="table">
+      			{% for item in items %}
+      				<form method="post" action="/modifyItem?category={{ category }}&item={{ item.item }}">
+					<tr>
+					   <td><input type='text' name='{{ item.item }}' value='{{ item.item }}'/></td>
+					   <td><a href='/deleteItem?category={{ category }}&item={{ item.item }}'><button class="btn btn-danger">Delete</button></a></td>
+					</tr>
+					</form>
+				{% endfor %}
+            	</table>
+				{% endif %}
+				
+				{% if error %}
+				<font color="red">{{ error }}</font>
+				{% endif %}
+				<form method="post" action="/addItem?category={{ category }}">
+				<table class="table">
+				<tr>
+      				<td><input type='text' name='newItem' placeholder="Item Name" />
+					<input type='submit' value='Add'/></td>
+				</tr>
+				</table>
+				</form>
+
+		</div>
+      </div>
+    </div> <!-- /container -->
+</body>
+</html>
+{% endblock %}

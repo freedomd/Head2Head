@@ -7,6 +7,6 @@ class Category(db.Model):
     
 class Item(db.Model):
     item = db.StringProperty()
-    win = db.IntegerProperty(0)
-    lose = db.IntegerProperty(0)
-    rate = db.FloatProperty(0.0)
+    win = db.IntegerProperty()
+    lose = db.IntegerProperty()
+    rate = db.FloatProperty()

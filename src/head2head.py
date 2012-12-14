@@ -3,6 +3,7 @@ import os
 from google.appengine.api import users
 from google.appengine.ext.webapp import template
 from category import *
+from item import *
 
 class HomePage(webapp2.RequestHandler):
     def get(self):
@@ -33,6 +34,9 @@ class HomePage(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([('/', HomePage), 
                                ('/category', CategoryPage),
                                ('/addCategory', AddCategory),
+                               ('/manageCategory', ManageCategory),
+                               ('/addItem', AddItem),
+                               ('/deleteItem', DeleteItem),
                                #('/vote',VotePage),
                                #('/item',ItemPage),
                                #('/result',ResultPage)

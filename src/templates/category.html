@@ -15,7 +15,7 @@
       			{% if isEmpty == None %}
       			<p>Oops, no categories right now!</p>
       			{% else %}
-      			<form method="post" action="/manageCategory">
+      			<form method="get" action="/manageCategory">
       			<table class="table">
       			{% for cat in userCats %}
 					<tr><td><input type='radio' name='category' value='{{ cat.category }}'/> {{ cat.category }}</td></tr>
@@ -25,6 +25,9 @@
 				</form>
 				{% endif %}
 				
+				{% if error %}
+				<font color="red">{{ error }}</font>
+				{% endif %}
 				<form method="post" action="/addCategory">
       				<input type='text' name='newCategory' placeholder="Category Name" />
 					<input type='submit' value='Add'/>
