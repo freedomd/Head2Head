@@ -1,0 +1,41 @@
+<html>
+<head> 
+<title>Head2head</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+      <div class="hero-unit">
+        <table>
+			<tr><h2 style="margin-bottom:5px">Welcome to head2head, {{ username }}!</h2></tr>
+			<tr><h4 style="margin-bottom:30px">Please select a category and vote what you like!</h4></tr>
+      	</table>
+      	<div align="center">
+      		<div>
+      				
+      		</div>
+      		
+      		{% if noLogin %}
+      			<p>Please <a href="/login">login</a> first, or click <a href="/register">here</a> to register.</p>	
+      		{% else %}
+      			<form method="post" action=".">
+      			<table>
+      			{% for category in categories %}
+					<input type='radio' name='category' value='{{ category }}'/> {{ category }}</br>
+				{% endfor %}
+            	</table>
+				</form>
+			{% endif %}
+
+		</div>
+      </div>
+      
+      <hr>
+	  <p>Open Source Tools Final Project<br></p>
+	  <p>&copy; 2012 Rongdi Huang, N12357169, rh1424@nyu.edu</p>
+    </div> <!-- /container -->
+</body>
+</html>
