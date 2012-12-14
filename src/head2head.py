@@ -5,21 +5,22 @@ from google.appengine.ext.webapp import template
 
 class HomePage(webapp2.RequestHandler):
     def get(self):
-        noLogin = True
-        username = None
         user = users.get_current_user()
-
         if user:
-            noLogin = False
+            login = True
             username = user.nickname()
+            url = users.create_logout_url(self.request.uri)
         else:
-            self.redirect(users.create_login_url(self.request.uri))
+            login = False
+            username = ""
+            url = users.create_login_url(self.request.uri)
             
         categories = None
         template_values = {
-            'login': noLogin,
+            'login': login,
             'categories': categories,
-            'username': username
+            'username': username,
+            'url': url
         }
 
         path = os.path.join(os.path.dirname(__file__), 'templates/home.html')
