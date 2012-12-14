@@ -32,23 +32,6 @@ class ResultPage(webapp2.RequestHandler):
         items.ancestor(c.key()) # get all the items of c
         items.order('-rate')
         
-        '''
-        # order
-        tmp = {}
-        order = {}
-        novote = {}
-        for item in items.run():
-            tmp[item.item] = {}
-            tmp[item.item]['win'] = item.win
-            tmp[item.item]['lose'] = item.lose
-            if item.win + item.lose == 0:
-                tmp[item.item]['rate']  = '-'
-                novote[item.item] = 0
-            else:
-                tmp[item.item]['rate']  = item.rate
-                order[item.item] = item.rate
-        '''
-        
         template_values = {
             'user': user,
             'login': login, 
