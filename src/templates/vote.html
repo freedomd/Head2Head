@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head> 
+<title>Vote</title>
+</head>
+
+<body>
+	<div class="container">
+	  <h2 style="margin-bottom:5px">Vote For {{ creatorName }}'s {{ category }}!</h2>
+      
+      <div class="hero-unit">
+      	<div>	
+			{% if error != None %}
+			{{ error }}<br>
+			Click <a href="/">here</a> to vote for another one!
+			{% else %}
+				{% if winner != None and loser != None %}
+				<em>You voted for "{{ winner.item }}" over "{{ loser.item }}".</em><br><br>
+				<table class="table table-bordered">
+				<tr><td>{{ winner.item }}</td><td>{{ winner.win }}</td></tr>
+				<tr><td>{{ loser.item }}</td><td>{{ loser.win }}</td></tr>
+				</table>
+				{% endif %}
+				<form method="post" action="/vote?creator={{ creator }}&category={{ category }}">
+				<table class="table table-striped">
+				<tr class="warning">
+					<td><input type='radio' name='option' value='{{ choice1 }}' checked />   {{ choice1 }}</td>
+					<td><input type='hidden' name='choice1' value='{{ choice1 }}'/></td>
+				</tr>
+				<tr class="info">
+					<td><input type='radio' name='option' value='{{ choice2 }}' />   {{ choice2 }}</td>
+					<td><input type='hidden' name='choice2' value='{{ choice2 }}'/></td>
+				</tr>		
+				</table>
+				<input type='submit' value='Vote!' class="btn btn-primary" style="margin-right:5px;"/>
+				<a class="btn btn-warning" style="margin-right:5px;" href="/vote?creator={{ creator }}&category={{ category }}">Skip</a>
+				<a class="btn btn-success" href="/result?creator={{ creator }}&category={{ category }}">Check Result</a>
+				</form>
+			{% endif %}
+
+		</div>
+      </div>
+    </div> <!-- /container -->
+</body>
+</html>
+{% endblock %}

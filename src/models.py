@@ -9,4 +9,4 @@ class Item(db.Model):
     item = db.StringProperty()
     win = db.IntegerProperty()
     lose = db.IntegerProperty()
-    rate = db.FloatProperty()
+    rate = db.IntegerProperty()
