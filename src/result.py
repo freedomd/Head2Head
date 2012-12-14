@@ -4,6 +4,10 @@ from google.appengine.api import users
 from google.appengine.ext.webapp import template
 from models import Category, Item
 
+class Result(object):
+    def __init__(self):
+        pass
+
 class ResultPage(webapp2.RequestHandler):
     def get(self):  
         user = users.get_current_user()
@@ -36,7 +40,7 @@ class ResultPage(webapp2.RequestHandler):
         
         orderList = {}
         tmpList = {}
-        itemList = {}
+        
         for item in items.run():
             tmpList[item.item] = {}
             tmpList[item.item]['win'] = item.win
@@ -44,11 +48,15 @@ class ResultPage(webapp2.RequestHandler):
             tmpList[item.item]['rate'] = item.rate
             orderList[item.item] = item.rate
         
+        itemList = []
         for item in sorted(orderList, key=orderList.get, reverse=True):
-            itemList[item] = {}
-            itemList[item]['win'] = tmpList[item]['win']
-            itemList[item]['lose'] = tmpList[item]['lose']
-            itemList[item]['rate'] = tmpList[item]['rate']
+            r = Result()
+            r.item = item
+            r.win = tmpList[item]['win']
+            r.lose = tmpList[item]['lose']
+            r.rate = tmpList[item]['rate']
+            
+            itemList.append(r)
         
         template_values = {
             'user': user,
