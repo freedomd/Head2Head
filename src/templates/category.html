@@ -20,7 +20,6 @@
       			<table class="table">
       			{% for cat in userCats %}
 					<tr>
-					   <td><input type='radio' name='category' value='{{ cat.category }}'/></td>
 					   <form method="post" action="/modifyCategory?category={{ cat.category }}">
 					   <td><input type='text' name='{{ cat.category }}' value='{{ cat.category }}'/></td>
 					   <td><input type='submit' class="btn btn-success" value='Modify' /></td>
@@ -28,6 +27,7 @@
 					   <form method="post" action="/deleteCategory?category={{ cat.category }}">
 					   <td><input type='submit' class="btn btn-danger" value='Delete' /></td>
 					   </form>
+					   <td><input type='radio' name='category' value='{{ cat.category }}'/></td>
 					</tr>
 				{% endfor %}
             	</table>
@@ -39,6 +39,7 @@
 				<font color="red">{{ error }}</font>
 				{% endif %}
 				<form method="post" action="/addCategory">
+					<font size=3>Add a New Category:  </font>
       				<input type='text' name='newCategory' placeholder="Category Name" />
 					<input type='submit' value='Add'/>
 				</form>

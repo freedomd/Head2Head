@@ -35,12 +35,9 @@
 				<font color="red">{{ error }}</font>
 				{% endif %}
 				<form method="post" action="/addItem?category={{ category }}">
-				<table class="table">
-				<tr>
-      				<td><input type='text' name='newItem' placeholder="Item Name" />
-					<input type='submit' value='Add'/></td>
-				</tr>
-				</table>
+      				<font size=3>Add a New Item:  </font>
+      				<input type='text' name='newItem' placeholder="Item Name" />
+					<input type='submit' value='Add'/>
 				</form>
 		</div>
 		<div align="right">

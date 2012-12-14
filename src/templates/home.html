@@ -30,12 +30,13 @@
       			<a href="/category">Add</a> a new category!
       			{% else %}
       			<table style="margin-bottom:8px;" class="table">
-      			<tr><th>Category Name</th><th>Creator</th><th></th><tr>
+      			<tr><th>Category Name</th><th>Creator</th><th></th><th></th><tr>
       			{% for category in categories %}
 					<tr>
 					    <td>{{ category.category }}</td>
 					    <td>{{ category.username }}</td>
-					    <td><a href="/vote?creator={{ category.user }}&category={{ category.category }}"/><button class="btn btn-info">Vote!</button></a></td>
+					    <td><a href="/vote?creator={{ category.user }}&category={{ category.category }}" class="btn btn-info"/>Vote!</a></td>
+					    <td><a href="/export?creator={{ category.user }}&category={{ category.category }}" class="btn btn-success"/>Export</a></td>
 					</tr>
 				{% endfor %}
             	</table>
