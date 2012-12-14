@@ -10,6 +10,18 @@ handlers:
 
 - url: /.*
   script: head2head.app
+  
+- url: /category.*
+  script: category.app
+  
+- url: /vote.*
+  script: vote.app 
+  
+- url: /item.*
+  script: item.app
+  
+- url: /result.*
+  script: result.app  
 
 libraries:
 - name: webapp2

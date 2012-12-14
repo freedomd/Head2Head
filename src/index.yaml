@@ -1,0 +1,18 @@
+indexes:
+
+- kind: Category
+  ancestor: no
+  properties:
+  - name: user
+  - name: category
+  - name: username
+  
+- kind: Item
+  ancestor: yes
+  properties:
+  - name: item
+  - name: win
+  - name: lose
+  - name: rate 
+    direction: desc
+

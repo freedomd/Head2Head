@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head> 
+<title>Manage Categories</title>
+</head>
+
+<body>
+	<div class="container">
+	  <h2 style="margin-bottom:5px">Manage Your Categories</h2>
+      
+      <div class="hero-unit">
+      	<div>
+      			{% if isEmpty == None %}
+      			<p>Oops, no categories right now!</p>
+      			{% else %}
+      			<form method="post" action="/manageCategory">
+      			<table class="table">
+      			{% for cat in userCats %}
+					<tr><td><input type='radio' name='category' value='{{ cat.category }}'/> {{ cat.category }}</td></tr>
+				{% endfor %}
+            	</table>
+            	<input type='submit' value='Manage'/>
+				</form>
+				{% endif %}
+				
+				<form method="post" action="/addCategory">
+      				<input type='text' name='newCategory' placeholder="Category Name" />
+					<input type='submit' value='Add'/>
+				</form>
+
+		</div>
+      </div>
+    </div> <!-- /container -->
+</body>
+</html>
+{% endblock %}

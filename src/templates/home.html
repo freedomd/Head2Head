@@ -14,25 +14,33 @@
 				!</h2></tr>
 			<tr><h4 style="margin-bottom:30px">Please <a href="{{ url }}">login</a> first!</h4></tr>
 			{% else %}
-			, {{ username }}!</h2></tr>
+				, {{ username }}!</h2></tr>
 			<tr><h4 style="margin-bottom:30px">Please select a category and vote what you like!</h4></tr>
 			{% endif %}
       </table>
       
       {% if login %}
       <div class="hero-unit">
-      	<div align="center">
+      	<div>
       		<div>		
       		</div>
-      			{% if category == None %}
-      			<p>Oops, no categories right now!</p>
+      			{% if isEmpty == None %}
+      			<p>Oops, no categories right now...</p>
+      			<a href="/category">Add</a> a new category!
       			{% else %}
       			<form method="post" action=".">
-      			<table>
+      			<table style="margin-bottom:8px;" class="table">
+      			<tr><th></th><th>Category Name</th><th>Creator</th><tr>
       			{% for category in categories %}
-					<input type='radio' name='category' value='{{ category }}'/> {{ category }}</br>
+					<tr>
+						<td><input type='radio' name='category' value='{{ category.category }}'/></td>
+					    <td>{{ category.category }}</td>
+					    <td>{{ category.username }}</td>
+					</tr>
 				{% endfor %}
+				<tr><td><input type='submit' value='Select' /></td><td></td><td></td></tr>
             	</table>
+            	
 				</form>
 				{% endif %}
 		</div>
