@@ -40,6 +40,7 @@ app = webapp2.WSGIApplication([('/', HomePage),
                                ('/manageCategory', ManageCategory),
                                ('/addItem', AddItem),
                                ('/deleteItem', DeleteItem),
+                               ('/resetItem', ResetItem),
                                ('/vote',VotePage),
                                ('/result',ResultPage),
                               ], debug=True)

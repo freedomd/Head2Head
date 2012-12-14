@@ -15,10 +15,11 @@
       			{% if isEmpty == None %}
       			<p>Oops, no items right now!</p>
       			{% else %}
+      			<em><font size=3>{{ message }}</font></em>
       			<table class="table">
       			{% for item in items %}	
 					<tr>
-					   <form method="post" action="/modifyItem?category={{ category }}&item={{ item.item }}">
+					   <form method="post" action="/resetItem?category={{ category }}&item={{ item.item }}">
 					   <td><input type='text' name='{{ item.item }}' value='{{ item.item }}'/></td>
 					   <td><input type='submit' class="btn btn-success" value='Reset' /></td>
 					   </form>
@@ -41,7 +42,9 @@
 				</tr>
 				</table>
 				</form>
-
+		</div>
+		<div align="right">
+		<a href="/category" class="btn btn-info">Back</a>
 		</div>
       </div>
     </div> <!-- /container -->

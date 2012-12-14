@@ -97,7 +97,8 @@ class ManageCategory(webapp2.RequestHandler):
                                'isEmpty': isEmpty,
                                'category': category,
                                'items': items,
-                               'error': self.request.get('error') 
+                               'error': self.request.get('error'),
+                               'message': self.request.get('message')
             }
         
             path = os.path.join(os.path.dirname(__file__), 'templates/manage_category.html')
