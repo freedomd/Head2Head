@@ -29,7 +29,9 @@ class ResultPage(webapp2.RequestHandler):
             return
         
         items = Item.all()
-        items.ancestor(c.key()) # get all the items of c
+        #items.ancestor(c.key()) # get all the items of c
+        items.filter("user =", user.email())
+        items.filter("category =", c.category)
         items.order('-rate')
         
         template_values = {

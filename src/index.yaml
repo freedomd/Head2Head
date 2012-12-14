@@ -15,4 +15,6 @@ indexes:
   - name: lose
   - name: rate 
     direction: desc
+  - name: category
+  - name: user
 

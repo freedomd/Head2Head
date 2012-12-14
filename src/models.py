@@ -10,3 +10,5 @@ class Item(db.Model):
     win = db.IntegerProperty()
     lose = db.IntegerProperty()
     rate = db.IntegerProperty()
+    category = db.StringProperty()
+    user = db.StringProperty()
