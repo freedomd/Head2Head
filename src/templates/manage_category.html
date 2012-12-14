@@ -16,13 +16,16 @@
       			<p>Oops, no items right now!</p>
       			{% else %}
       			<table class="table">
-      			{% for item in items %}
-      				<form method="post" action="/modifyItem?category={{ category }}&item={{ item.item }}">
+      			{% for item in items %}	
 					<tr>
+					   <form method="post" action="/modifyItem?category={{ category }}&item={{ item.item }}">
 					   <td><input type='text' name='{{ item.item }}' value='{{ item.item }}'/></td>
-					   <td><a href='/deleteItem?category={{ category }}&item={{ item.item }}'><button class="btn btn-danger">Delete</button></a></td>
+					   <td><input type='submit' class="btn btn-success" value='Reset' /></td>
+					   </form>
+					   <form method="post" action="/deleteItem?category={{ category }}&item={{ item.item }}">
+					   <td><input type='submit' class="btn btn-danger" value='Delete' /></td>
+					   </form>
 					</tr>
-					</form>
 				{% endfor %}
             	</table>
 				{% endif %}

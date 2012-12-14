@@ -20,6 +20,7 @@ class HomePage(webapp2.RequestHandler):
         categories = Category.all()
         isEmpty = categories.get()
         template_values = {
+            'user': user,
             'login': login,
             'categories': categories,
             'username': username,

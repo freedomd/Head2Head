@@ -28,17 +28,15 @@
       			<p>Oops, no categories right now...</p>
       			<a href="/category">Add</a> a new category!
       			{% else %}
-      			<form method="post" action=".">
       			<table style="margin-bottom:8px;" class="table">
-      			<tr><th></th><th>Category Name</th><th>Creator</th><tr>
+      			<tr><th>Category Name</th><th>Creator</th><th></th><tr>
       			{% for category in categories %}
 					<tr>
-						<td><input type='radio' name='category' value='{{ category.category }}'/></td>
 					    <td>{{ category.category }}</td>
 					    <td>{{ category.username }}</td>
+					    <td><a href="/vote?creator={{ category.user }}&category={{ category.category }}"/><button class="btn btn-info">Vote!</button></a></td>
 					</tr>
 				{% endfor %}
-				<tr><td><input type='submit' value='Select' /></td><td></td><td></td></tr>
             	</table>
             	
 				</form>
