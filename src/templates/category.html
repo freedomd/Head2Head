@@ -35,14 +35,25 @@
 				</form>
 				{% endif %}
 				
+				<table>
 				{% if error %}
-				<font color="red">{{ error }}</font>
+				<tr><td><font color="red">{{ error }}</font></td></tr>
 				{% endif %}
-				<form method="post" action="/addCategory">
-					<font size=3>Add a New Category:  </font>
-      				<input type='text' name='newCategory' placeholder="Category Name" />
-					<input type='submit' value='Add'/>
+				<tr><form method="post" action="/addCategory">
+					<td><font size=3>Add a New Category:  </font></td>
+      				<td><input type='text' name='newCategory' placeholder="Category Name" /></td>
+					<td><input type='submit' value='Add'/></td>
+				</form></tr>
+				<tr><td>&nbsp;<td></tr>
+				<tr><em><font size=3>{{ importMessage }}</font></em></tr>
+				<tr>
+				<form enctype="multipart/form-data" method="post" action="/import">
+					<td><font size=3>Import a Category:  </font></td>
+      				<td><input type='file' name='content' /></td>
+      				<td><input type='submit' value='Import'/></td>
 				</form>
+				</tr>
+				</table>
 
 		</div>
       </div>

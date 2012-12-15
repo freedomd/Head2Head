@@ -23,6 +23,12 @@ handlers:
 - url: /result.*
   script: result.app  
 
+- url: /export.*
+  script: xmlHandler.app 
+  
+- url: /import.*
+  script: xmlHandler.app   
+
 libraries:
 - name: webapp2
   version: "2.5.1"

@@ -30,7 +30,8 @@ class CategoryPage(webapp2.RequestHandler):
             'url': url,
             'isEmpty': isEmpty,
             'error': self.request.get('error'),
-            'message': self.request.get('message')
+            'message': self.request.get('message'),
+            'importMessage': self.request.get('importMessage')
         }
         
         path = os.path.join(os.path.dirname(__file__), 'templates/category.html')
@@ -124,6 +125,10 @@ class DeleteCategory(webapp2.RequestHandler):
             cs.filter('category =', category) # get category
             c = cs.get()
             if c != None:
+                items = Item.all()
+                items.ancestor(c.key())
+                for item in items.run():
+                    item.delete()
                 c.delete()
         
         self.redirect("/category")

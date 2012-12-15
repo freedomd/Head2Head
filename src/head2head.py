@@ -6,6 +6,7 @@ from category import *
 from item import *
 from vote import *
 from result import *
+from xmlHandler import *
 
 class HomePage(webapp2.RequestHandler):
     def get(self):
@@ -27,7 +28,8 @@ class HomePage(webapp2.RequestHandler):
             'categories': categories,
             'username': username,
             'url': url,
-            'isEmpty': isEmpty
+            'isEmpty': isEmpty,
+            'message': self.request.get('message')
         }
 
         path = os.path.join(os.path.dirname(__file__), 'templates/home.html')
@@ -45,4 +47,6 @@ app = webapp2.WSGIApplication([('/', HomePage),
                                ('/resetItem', ResetItem),
                                ('/vote',VotePage),
                                ('/result',ResultPage),
+                               ('/export',Export),
+                               ('/import',Import),
                               ], debug=True)

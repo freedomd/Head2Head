@@ -4,6 +4,22 @@
 <html>
 <head> 
 <title>Head2head</title>
+
+<script type="text/javascript">
+    
+    function exportXML() {
+    	var creator = $("#creator").val();
+    	var category = $("#category").val();
+    	//var path = prompt("Please enter the path you want to save the xml file:");
+
+		if (path != null && path != '') {
+	         window.location.href='/export?creator='+creator+'&category='+category; //+'&path='+path;
+		}
+    }
+    
+</script>
+
+
 </head>
 
 <body>
@@ -29,6 +45,7 @@
       			<p>Oops, no categories right now...</p>
       			<a href="/category">Add</a> a new category!
       			{% else %}
+      			<em><font size=3 color="red">{{ message }}</font></em>
       			<table style="margin-bottom:8px;" class="table">
       			<tr><th>Category Name</th><th>Creator</th><th></th><th></th><tr>
       			{% for category in categories %}
@@ -36,7 +53,10 @@
 					    <td>{{ category.category }}</td>
 					    <td>{{ category.username }}</td>
 					    <td><a href="/vote?creator={{ category.user }}&category={{ category.category }}" class="btn btn-info"/>Vote!</a></td>
-					    <td><a href="/export?creator={{ category.user }}&category={{ category.category }}" class="btn btn-success"/>Export</a></td>
+					    <td><a href="/export?creator={{ category.user }}&category={{ category.category }}" class="btn btn-success"/>Export</button></td>
+					    <input type="hidden" id="creator" value="{{ category.user }}" />
+					    <input type="hidden" id="category" value="{{ category.category }}" />
+					    
 					</tr>
 				{% endfor %}
             	</table>
